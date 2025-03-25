@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game Luxury Edition</title>
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjMWYxZjFmIiByeD0iOCIgcnk9IjgiIC8+CiAgPHBhdGggZD0iTTQ4IDMwYzAgMyAtMi40IDE1LjUgLTcgMTUuNSAtMi41IDAgLTQuNSAtMi41IC00LjUgLTUuNXMtMi4zIC01LjUgLTUuNSAtNS41IC01LjMgMi41IC01LjUgNC41Yy0wLjUgNC41IC0yLjUgNi41IC03IDYuNSAtMTAgMCAtMTAuMDIgLTE1LjUgMCAtMTUuNSAxLjUgMCAzIC0wLjUgNCAtMiAyIC0zIDIuMiAtOSA2LjUgLTEwIDIgLTAuNSAzLjUgLTAuNSA1LjUgMCAxIDAgMS41IDAuNSAyIDEgMSAxIDEuNSAxIDIuNSAxLjUgMS42IDAuOCAzLjQgMS4yIDQgMy41IDEgMy41IDEuNSA0IDMgNSAyIDEuNSAyIDEuNSAyIC0wLjV6IiBmaWxsPSIjZmM2NDI2Ii8+CiAgPGNpcmNsZSBjeD0iNDYiIGN5PSIyOCIgcj0iMiIgZmlsbD0iI2ZmZmZmZiIvPgogIDxjaXJjbGUgY3g9IjQ2IiBjeT0iMjgiIHI9IjAuOCIgZmlsbD0iIzFmMWYxZiIvPgo8L3N2Zz4K" type="image/svg+xml">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="snake-game.css" rel="stylesheet">
+    <link href="css/snake-game.css" rel="stylesheet">
+    <script src="snake-game.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-snake"></i> Snake Game Luxury</h1>
+            <p>Desafie-se neste clássico jogo renovado</p>
+        </header>
+        
+        <div class="score-board">
+            <div class="score-item">
+                <div class="score-label">Pontuação Atual</div>
+                <div class="score-value" id="score-display">0</div>
+            </div>
+            <div class="score-item">
+                <div class="score-label">Nível</div>
+                <div class="score-value" id="level-display">1</div>
+            </div>
+            <div class="score-item">
+                <div class="score-label">Melhor Pontuação</div>
+                <div class="score-value" id="high-score-value">0</div>
+            </div>
+        </div>
+        
+        <div class="settings-panel">
+            <div class="settings-title">
+                <i class="fas fa-cog"></i> Configurações
+            </div>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <div class="setting-label">Dificuldade</div>
+                    <select id="difficulty-select">
+                        <option value="easy">Fácil</option>
+                        <option value="medium" selected>Normal</option>
+                        <option value="hard">Difícil</option>
+                        <option value="extreme">Extremo</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">Cor da Cobra</div>
+                    <input type="color" id="snake-color" class="color-picker" value="#fc6426">
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">Cor da Comida</div>
+                    <input type="color" id="food-color" class="color-picker" value="#e2a928">
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">Tamanho do Tabuleiro</div>
+                    <select id="board-size">
+                        <option value="small">Pequeno</option>
+                        <option value="medium" selected>Médio</option>
+                        <option value="large">Grande</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-container" style="width: 500px; height: 500px;">
+            <div class="level-badge">Nível: <span id="level-badge-display">1</span></div>
+            <canvas id="snake-canvas" width="500" height="500"></canvas>
+            <div id="game-over" class="game-over">
+                <h2 class="animate__animated animate__heartBeat animate__infinite">Fim de Jogo!</h2>
+                <div class="score-recap">
+                    <p>Sua pontuação</p>
+                    <div class="final-score" id="final-score">0</div>
+                </div>
+                <button id="restart-button" class="btn-primary">
+                    <i class="fas fa-redo-alt"></i> <span>Jogar Novamente</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="buttons-container">
+                <button id="start-button" class="btn-success">
+                    <i class="fas fa-play"></i> <span>Iniciar Jogo</span>
+                </button>
+                <button id="pause-button" class="btn-primary">
+                    <i class="fas fa-pause"></i> <span>Pausar</span>
+                </button>
+                <button id="settings-button" class="btn-primary">
+                    <i class="fas fa-cog"></i> <span>Configurações</span>
+                </button>
+            </div>
+            
+            <div class="mobile-controls">
+                <div class="direction-btn up-btn">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+                <div class="direction-btn left-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="direction-btn right-btn">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="direction-btn down-btn">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+            </div>
+            
+            <div class="keyboard-hint">
+                Use as teclas <span class="key">↑</span> <span class="key">↓</span> <span class="key">←</span> <span class="key">→</span> ou <span class="key">W</span> <span class="key">S</span> <span class="key">A</span> <span class="key">D</span> para mover a cobra
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Snake Game Luxury Edition | Todos os direitos reservados a Marcelo Filho | Desenvolvido com <i class="fas fa-heart"></i></p>
+    </div>
+    
+    <script src="js/snake-game.js"></script>
+</body>
+</html>

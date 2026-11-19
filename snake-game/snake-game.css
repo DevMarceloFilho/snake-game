@@ -143,7 +143,8 @@ header p {
     overflow: hidden;
     box-shadow: var(--shadow-lg);
     background: var(--secondary);
-    margin-bottom: 1.8rem;
+    /* Largura fixa (vem do tamanho do tabuleiro): centraliza no meio do placar e dos controles. */
+    margin: 0 auto 1.8rem;
     border: 2px solid var(--secondary-dark);
     transition: transform 0.3s, box-shadow 0.3s;
 }
